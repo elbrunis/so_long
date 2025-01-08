@@ -1,27 +1,44 @@
-NAME = so_looong
+NAME = hola
 
 CC = cc
-CFLAGS = -Werror -Wextra -Wall
-SRC = put_map.c so_long.c
+CFLAGS = -Werror -Wextra -Wall -Wno-unused-parameter
+SRC = put_map.c
 OBJ = $(SRC:.c=.o)
 
-INC = -I./minilibx-linux  # Ruta a las cabeceras de MiniLibX
-LIBS = -L./minilibx-linux -lmlx -lX11 -lXext -lm  # Librerías necesarias
+# Rutas a las bibliotecas
+DIR_LIBFT = libraries/mylibft
+DIR_MLX = libraries/minilibx-linux
 
+# Archivos de las bibliotecas
+LIBFT = $(DIR_LIBFT)/libft.a
+MLX = $(DIR_MLX)/libmlx.a
+
+# Incluir cabeceras
+INCLUDE = -I$(DIR_LIBFT) -I$(DIR_MLX)
+
+# Reglas
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(LIBS) -o $(NAME)  # Vincula MiniLibX
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+$(LIBFT):
+	make -C $(DIR_LIBFT)
+
+$(MLX):
+	make -C $(DIR_MLX)
 
 clean:
-	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
+	rm -f $(OBJ)
+	make clean -C $(DIR_LIBFT)
+	make clean -C $(DIR_MLX)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
+	make fclean -C $(DIR_LIBFT)
 
 re: fclean all
 

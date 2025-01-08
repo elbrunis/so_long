@@ -43,3 +43,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+# cc -Wall -Wextra -Werror put_map.c -Llibraries/minilibx-linux -lmlx -lXext -lX11 -lm -o ponercolor
+# comando para ejecutar 

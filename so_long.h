@@ -27,4 +27,10 @@ typedef struct s_imagen
 	t_position	pos;
 }				t_imagen;
 
+typedef struct s_matriz
+{
+	int			fila;
+	int			columna;
+}				t_matriz;
+
 #endif
