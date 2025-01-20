@@ -1,9 +1,10 @@
 #include "so_long.h"
+
 int     main(int ac, char **av)
 {
     int     fd;
 
-    fd = open("map/map3.ber", O_RDONLY);
+    fd = open("map/map2.ber", O_RDONLY);
     if(fd <= 0)
     {
         ft_printf("el mapa no se abrio correctamente");

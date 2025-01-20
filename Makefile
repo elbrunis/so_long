@@ -1,8 +1,8 @@
 NAME = hola
 
-CC = cc
-CFLAGS = -Werror -Wextra -Wall -Wno-unused-parameter
-SRC = so_long.c reed_map.c put_map.c error.c
+CC = gcc
+CFLAGS = -g -Werror -Wextra -Wall -Wno-unused-parameter -pedantic
+SRC = move.c
 OBJ = $(SRC:.c=.o)
 
 # Rutas a las bibliotecas

@@ -7,8 +7,8 @@
 # include <fcntl.h>
 
 // size of image
-# define IMG_HEIGHT 32
-# define IMG_WIDTH 32
+# define IMG_HEIGHT 50
+# define IMG_WIDTH 50
 // objets
 # define WALL '1'
 # define FLOOR '0'
@@ -41,7 +41,7 @@ typedef	struct s_map
 	char		**map;
 	int			filas;
 	int			columnas;
-	char 		n; //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
+	int 		n; //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
 	t_objet 	*img;
 	t_position	pos;
 	
@@ -57,7 +57,7 @@ typedef	struct s_map
 
 void    count_map(int fd, int *columnas, int *filas);
 void	crate_memory_for_matriz(t_map *map);
-void    write_matriz(char **map, int columnas, int filas, int fd);
+void    write_matriz(t_map *map, int fd);
 t_map	*init_t_map(void);
 t_map	*return_map(int fd);
 void	init_mlx(int fd);

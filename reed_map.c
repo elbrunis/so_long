@@ -36,7 +36,7 @@ void	crate_memory_for_matriz(t_map *map)
     }
 }
 
-void    write_matriz(char **map, int columnas, int filas, int fd)
+void    write_matriz(t_map *map, int fd)
 {
     char    *temp;
     int     x;// Fila
@@ -44,21 +44,20 @@ void    write_matriz(char **map, int columnas, int filas, int fd)
 
     x = 0;
     lseek(fd, 0, SEEK_SET);
-
-    while((temp = get_next_line(fd)) != NULL)
+    while((temp = get_next_line(fd)) != NULL && x < map->filas)
     {
         y = 0;
-        while(temp[y] != '\0')
+        while(temp[y] != '\0' && y < map->columnas)
         {
-            map[x][y] = temp[y];
-            ft_printf("%c", map[x][y]);
+            map->map[x][y] = temp[y];
+            ft_printf("%c", map->map[x][y]);
             y++;
         }
-        map[x][y] = '\0';
+        map->map[x][y] = '\0';
+        ft_printf("\n");
         free(temp);
         x++;
     }
-    ft_printf("\n");
 }
 
 t_map	*init_t_map(void)
@@ -91,7 +90,7 @@ t_map	*return_map(int fd)
 
 	crate_memory_for_matriz(map);
 
-    write_matriz( map->map, map->columnas, map->filas, fd);
+    write_matriz(map, fd);
     return (map);
 }
 

@@ -13,6 +13,7 @@ t_objet	*init_obj(void *mlx)
 	obj->width = 0;
 	obj->height = 0;
 	obj->floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &obj->width, &obj->height);
+	obj->player = mlx_xpm_file_to_image(mlx, "textures/npc.xpm", &obj->width, &obj->height);
 	obj->wall = mlx_xpm_file_to_image(mlx, "textures/wall.xpm", &obj->width, &obj->height);
 	obj->coin = mlx_xpm_file_to_image(mlx, "textures/coin.xpm", &obj->width, &obj->height);
 	obj->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &obj->width, &obj->height);
@@ -45,20 +46,41 @@ void	print_map(t_map *map)
 	int		x;
 	int 	y;
 
+	if (!map || !map->map) // Verifica que el puntero al mapa no sea nulo
+	return;
 	x = 0;
-	while(map->map[x] && x < map->filas)
+	while(map->map[x] != NULL && x < map->filas)
 	{
 		y = 0;
 		while(map->map[x][y] != '\0' && y < map->columnas)
 		{
-			map->pos.y = y * 50;
-			map->pos.x = x * 50;
+			map->pos.y = x * 50;
+			map->pos.x = y * 50;
 			map->n = map->map[x][y];  //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
+			ft_printf("%d ", map->n);
 			print_image(map);
 			y++;
 		}
+		ft_printf("\n");
 		x++;
 	}
+}
+void free_objet(t_objet *objet)
+{
+    if (objet)
+    {
+        if (objet->floor)
+            free(objet->floor);
+        if (objet->wall)
+            free(objet->wall);
+        if (objet->coin)
+            free(objet->coin);
+        if (objet->exit)
+            free(objet->exit);
+        if (objet->player)
+            free(objet->player);
+        free(objet);
+    }
 }
 void free_map(t_map *map)
 {
@@ -85,7 +107,8 @@ void	init_mlx(int fd)
 	obj = init_obj(map->mlx);
 	map->img = obj;
 	print_map(map);
-	free_map(map);
-	
+
 	mlx_loop(map->mlx);
+	free_objet(obj);
+	free_map(map);
 }
