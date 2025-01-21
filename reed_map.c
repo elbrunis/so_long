@@ -60,32 +60,11 @@ void    write_matriz(t_map *map, int fd)
     }
 }
 
-t_map	*init_t_map(void)
-{
-	t_map	*map;
-	map = (t_map *)malloc(sizeof(t_map));
-	if(!map)
-	{
-		ft_printf("no se ha asignado correctamente map");
-		exit(-1);
-	}
-	map->mlx = NULL;
-	map->window = NULL;
-	map->map = NULL;
-	map->filas = 0;
-	map->columnas = 0;
-    map->n = '\0';
-    map->img = NULL;
-    map->pos.x = 0;
-    map->pos.y = 0;
-	return (map);
-}
-
 t_map	*return_map(int fd)
 {
 	t_map *map;
 
-	map = init_t_map();
+	map = init_map();
     count_map(fd, &map->columnas, &map->filas);
 
 	crate_memory_for_matriz(map);

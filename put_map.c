@@ -1,30 +1,5 @@
 #include "so_long.h"
 
-t_objet	*init_obj(void *mlx)
-{
-	t_objet	*obj;
-
-	obj = (t_objet *)malloc(sizeof(t_objet));
-	if(!obj)
-	{
-		ft_printf("no se ha asignado correctamente map info");
-		exit(1);
-	}
-	obj->width = 0;
-	obj->height = 0;
-	obj->floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &obj->width, &obj->height);
-	obj->player = mlx_xpm_file_to_image(mlx, "textures/npc.xpm", &obj->width, &obj->height);
-	obj->wall = mlx_xpm_file_to_image(mlx, "textures/wall.xpm", &obj->width, &obj->height);
-	obj->coin = mlx_xpm_file_to_image(mlx, "textures/coin.xpm", &obj->width, &obj->height);
-	obj->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &obj->width, &obj->height);
-	if (!obj->floor || !obj->wall || !obj->coin || !obj->exit)
-	{
-    ft_printf("Error: failed to load textures.\n");
-	free(obj);
-    exit(1);
-	}
-	return(obj);
-}
 // X->fila   Y->columna
 void	print_image(t_map *map)
 {
@@ -65,34 +40,7 @@ void	print_map(t_map *map)
 		x++;
 	}
 }
-void free_objet(t_objet *objet)
-{
-    if (objet)
-    {
-        if (objet->floor)
-            free(objet->floor);
-        if (objet->wall)
-            free(objet->wall);
-        if (objet->coin)
-            free(objet->coin);
-        if (objet->exit)
-            free(objet->exit);
-        if (objet->player)
-            free(objet->player);
-        free(objet);
-    }
-}
-void free_map(t_map *map)
-{
-    int i;
 
-    if (!map || !map->map)
-        return;
-    for (i = 0; i < map->filas; i++)
-        free(map->map[i]);
-    free(map->map);
-    free(map);
-}
 // width->ancho   height->altura
 void	init_mlx(int fd)
 {
