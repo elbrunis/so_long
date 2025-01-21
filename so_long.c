@@ -1,15 +1,20 @@
 #include "so_long.h"
 
-int     main(int ac, char **av)
+int	open_fd(void)
 {
-    int     fd;
+	int	fd;
 
-    fd = open("map/map2.ber", O_RDONLY);
-    if(fd <= 0)
-    {
-        ft_printf("el mapa no se abrio correctamente");
-        return (0);
-    }
-    init_mlx(fd);
-    return (0);
+	fd = open("map/map2.ber", O_RDONLY);
+	if (fd <= 0)
+		ft_error("fd");
+	return (fd);
+}
+
+int	main(int ac, char **av)
+{
+	int	fd;
+
+	fd = open_fd();
+	init_mlx(fd);
+	return (0);
 }

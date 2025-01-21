@@ -21,12 +21,31 @@
 # define D 100
 # define A 97
 
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361 
+# define RIGHT 65363 
+
+# define ESC 65307
+
 // X->fila   Y->columna
 typedef struct s_position
 {
 	int			x;
 	int			y;
 }				t_position;
+
+typedef struct s_npc
+{
+	void		*front;
+	void		*frontmv;
+	void		*left;
+	void		*leftmv;
+	void		*right;
+	void		*rightmv;
+	void		*back;
+	void		*backmv;
+}				t_npc;
 
 typedef struct s_objet
 {
@@ -36,7 +55,7 @@ typedef struct s_objet
 	void		*wall;
 	void		*coin;
 	void		*exit;
-	void		*s_npc;
+	t_npc		*npc;
 }				t_objet;
 
 typedef	struct s_map
@@ -53,16 +72,6 @@ typedef	struct s_map
 	
 }				t_map;
 
-typedef struct s_npc
-{
-	int			x;
-	int			y;
-	void		*front;
-	void		*left;
-	void		*right;
-	void		*back;
-}				t_npc;
-
 void    count_map(int fd, int *columnas, int *filas);
 void	crate_memory_for_matriz(t_map *map);
 void    write_matriz(t_map *map, int fd);
@@ -72,7 +81,7 @@ void	init_mlx(int fd);
 t_objet	*init_obj(void *mlx);
 void	print_map(t_map *map);
 void	print_image(t_map *map);
-void p(void);
+void    ft_error(char *str);
 
 
 #endif
