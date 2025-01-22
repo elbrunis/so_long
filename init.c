@@ -1,49 +1,94 @@
-#include "so_long"
+#include "so_long.h"
 
-t_map	*init_map(void)
+static t_map	*init_map(void *mlx)
 {
 	t_map	*map;
 	map = (t_map *)malloc(sizeof(t_map));
 	if(!map)
-	{
-		ft_printf("no se ha asignado correctamente map");
-		exit(-1);
-	}
+		ft_error("mem_map");
     map->fd = 0;
-	map->mlx = NULL;
+	map->mlx = mlx;
 	map->window = NULL;
 	map->map = NULL;
 	map->filas = 0;
 	map->columnas = 0;
     map->n = '\0';
-    map->img = NULL;
+    map->obj = NULL;
     map->pos.x = 0;
     map->pos.y = 0;
 	return (map);
 }
 
-t_objet	*init_obj(void *mlx)
+static t_npc  *init_npc(void *mlx, t_objet *obj) 
+{
+	t_npc *npc;
+
+	npc = (t_npc *)malloc(sizeof(t_npc));
+	if (!npc)
+		ft_error("mem_npc");
+
+    npc->front = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm", &obj->width, &obj->height);
+    npc->frontmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcmv.xpm",  &obj->width, &obj->height);
+    npc->left = mlx_xpm_file_to_image(mlx, "textures/npc/npcleft.xpm",  &obj->width, &obj->height);
+    npc->leftmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcleftmv.xpm",  &obj->width, &obj->height);
+    npc->right = mlx_xpm_file_to_image(mlx, "textures/npc/npcright.xpm",  &obj->width, &obj->height);
+    npc->rightmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcrightmv.xpm",  &obj->width, &obj->height);
+    npc->back = mlx_xpm_file_to_image(mlx, "textures/npc/npcback.xpm",  &obj->width, &obj->height);
+    npc->backmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcbackmv.xpm",  &obj->width, &obj->height);
+	if (!npc->front || !npc->frontmv || !npc->left || !npc->leftmv ||
+        !npc->right || !npc->rightmv || !npc->back || !npc->backmv)
+		ft_error("npc");
+	
+	return (npc);
+}
+
+static t_objet	*init_obj(void *mlx)
 {
 	t_objet	*obj;
 
 	obj = (t_objet *)malloc(sizeof(t_objet));
 	if(!obj)
-	{
-		ft_printf("no se ha asignado correctamente map info");
-		exit(1);
-	}
+		ft_error("mem_obj");
 	obj->width = 0;
 	obj->height = 0;
 	obj->floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &obj->width, &obj->height);
-	obj->player = mlx_xpm_file_to_image(mlx, "textures/npc.xpm", &obj->width, &obj->height);
 	obj->wall = mlx_xpm_file_to_image(mlx, "textures/wall.xpm", &obj->width, &obj->height);
 	obj->coin = mlx_xpm_file_to_image(mlx, "textures/coin.xpm", &obj->width, &obj->height);
 	obj->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &obj->width, &obj->height);
+
+	obj->npc = init_npc(mlx, obj);
 	if (!obj->floor || !obj->wall || !obj->coin || !obj->exit)
-	{
-    ft_printf("Error: failed to load textures.\n");
-	free(obj);
-    exit(1);
-	}
+		ft_error("texturas");
 	return(obj);
 }
+
+t_map *init_game_mem(void *mlx)
+{
+	t_map	*map;
+	
+	map = init_map(mlx);
+	
+	map->obj = init_obj(mlx);
+
+	return(map);
+}
+
+// int main()
+// {
+// 	t_map	*map;
+// 	void	*mlx;
+// 	void	*window;
+
+	
+// 	mlx = mlx_init();
+// 	window = mlx_new_window(mlx, 1000, 1000, "ventana");
+// 	map = init_game(mlx);
+// 	mlx_put_image_to_window(mlx, window, map->obj->floor, 0 , 0);
+	
+// 	map->fd = 23;
+
+// 	ft_printf("pareze que funciona jeje, :%d\n",map->fd);
+// 	free_game(map);
+// 	mlx_loop(mlx);
+// 	return(0);
+// }

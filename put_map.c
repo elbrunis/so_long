@@ -1,18 +1,18 @@
 #include "so_long.h"
 
 // X->fila   Y->columna
-void	print_image(t_map *map)
+static void	put_images(t_map *map)
 {
 	if (WALL == map->n)
-		mlx_put_image_to_window(map->mlx, map->window, map->img->wall, map->pos.x, map->pos.y);
+		mlx_put_image_to_window(map->mlx, map->window, map->obj->wall, map->pos.x, map->pos.y);
 	if (FLOOR == map->n)
-		mlx_put_image_to_window(map->mlx, map->window, map->img->floor,map->pos.x, map->pos.y);
+		mlx_put_image_to_window(map->mlx, map->window, map->obj->floor,map->pos.x, map->pos.y);
 	if (COINS == map->n)
-    	mlx_put_image_to_window(map->mlx, map->window, map->img->coin, map->pos.x, map->pos.y);
+    	mlx_put_image_to_window(map->mlx, map->window, map->obj->coin, map->pos.x, map->pos.y);
 	if (PLAYER == map->n)
-    	mlx_put_image_to_window(map->mlx, map->window, map->img->player, map->pos.x, map->pos.y);
+    	mlx_put_image_to_window(map->mlx, map->window, map->obj->exit, map->pos.x, map->pos.y);//Aqui deberia de ir player
 	if (EXIT == map->n)
-    	mlx_put_image_to_window(map->mlx, map->window, map->img->exit, map->pos.x, map->pos.y);
+    	mlx_put_image_to_window(map->mlx, map->window, map->obj->exit, map->pos.x, map->pos.y);
 }
 
 // X->fila   Y->columna
@@ -33,30 +33,10 @@ void	print_map(t_map *map)
 			map->pos.x = y * 50;
 			map->n = map->map[x][y];  //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
 			ft_printf("%d ", map->n);
-			print_image(map);
+			put_images(map);
 			y++;
 		}
 		ft_printf("\n");
 		x++;
 	}
-}
-
-// width->ancho   height->altura
-void	init_mlx(int fd)
-{
-	t_map	*map;
-	t_objet	*obj;
-
-	map = return_map(fd);
-
-	map->mlx = mlx_init();
-	map->window = mlx_new_window(map->mlx, (map->columnas * 50), (map->filas * 50), "so_long");
-
-	obj = init_obj(map->mlx);
-	map->img = obj;
-	print_map(map);
-
-	mlx_loop(map->mlx);
-	free_objet(obj);
-	free_map(map);
 }
