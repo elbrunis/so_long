@@ -22,11 +22,18 @@ static t_map	*init_map(void *mlx)
 static t_npc  *init_npc(void *mlx, t_objet *obj) 
 {
 	t_npc *npc;
+	t_position *pos;
 
 	npc = (t_npc *)malloc(sizeof(t_npc));
 	if (!npc)
 		ft_error("mem_npc");
-
+	pos = (t_position *)malloc(sizeof(t_position));
+	if (!pos)
+		ft_error("mem_npc");
+	npc->pos = pos;
+	npc->pos->x = 0;
+   	npc->pos->y = 0;
+	npc->i = 0; //contador para poner mv o normal
     npc->front = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm", &obj->width, &obj->height);
     npc->frontmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcmv.xpm",  &obj->width, &obj->height);
     npc->left = mlx_xpm_file_to_image(mlx, "textures/npc/npcleft.xpm",  &obj->width, &obj->height);

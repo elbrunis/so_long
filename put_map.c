@@ -10,7 +10,7 @@ static void	put_images(t_map *map)
 	if (COINS == map->n)
     	mlx_put_image_to_window(map->mlx, map->window, map->obj->coin, map->pos.x, map->pos.y);
 	if (PLAYER == map->n)
-    	mlx_put_image_to_window(map->mlx, map->window, map->obj->exit, map->pos.x, map->pos.y);//Aqui deberia de ir player
+    	mlx_put_image_to_window(map->mlx, map->window, map->obj->npc->front, map->pos.x, map->pos.y);//Aqui deberia de ir player
 	if (EXIT == map->n)
     	mlx_put_image_to_window(map->mlx, map->window, map->obj->exit, map->pos.x, map->pos.y);
 }
@@ -32,7 +32,7 @@ void	print_map(t_map *map)
 			map->pos.y = x * 50;
 			map->pos.x = y * 50;
 			map->n = map->map[x][y];  //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
-			ft_printf("%d ", map->n);
+			ft_printf("%c ", map->n);
 			put_images(map);
 			y++;
 		}

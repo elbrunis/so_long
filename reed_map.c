@@ -45,11 +45,18 @@ static void    write_matriz(t_map *map)
         while(temp[y] != '\0' && y < map->columnas)
         {
             map->map[x][y] = temp[y];
-            ft_printf("%c", map->map[x][y]);
+            // ft_printf("%c", map->map[x][y]);
+            if(map->map[x][y] == PLAYER)
+            {
+                map->obj->npc->pos->x = 50 * y; //se invierte por que por alguna razon cuya cual de momento desconozco se imprime el mapa invertido
+                map->obj->npc->pos->y = 50 * x; // se multipica la posicion por el tamaño de las imagenes
+                ft_printf("%d\n", map->obj->npc->pos->x);//fila
+                ft_printf("%d\n", map->obj->npc->pos->y);//columna
+            }
             y++;
         }
         map->map[x][y] = '\0';
-        ft_printf("\n");
+        // ft_printf("\n");
         free(temp);
         x++;
     }

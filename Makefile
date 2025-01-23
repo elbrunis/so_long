@@ -2,7 +2,7 @@ NAME = hola
 
 CC = gcc
 CFLAGS = -g -Werror -Wextra -Wall -Wno-unused-parameter -pedantic
-SRC = init.c free.c error.c so_long.c reed_map.c put_map.c
+SRC = init.c free.c error.c so_long.c reed_map.c put_map.c move_cpy.c
 OBJ = $(SRC:.c=.o)
 
 # Rutas a las bibliotecas

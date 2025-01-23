@@ -37,6 +37,8 @@ typedef struct s_position
 
 typedef struct s_npc
 {
+	int			i; //es el contador para el movimiento del npc
+	t_position	*pos;
 	void		*front;
 	void		*frontmv;
 	void		*left;
@@ -79,6 +81,8 @@ void    ft_error(char *str);
 void	free_game(t_map *map);
 t_map	*init_game_mem(void *mlx);
 t_map	*create_map_with_info(t_map *map);
+//move key
+int move_img(int keycode, void *param);
 
 
 
