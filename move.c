@@ -4,7 +4,6 @@
 static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
 {
 	mlx_put_image_to_window(map->mlx, map->window, map->obj->floor, map->obj->npc->pos->x, map->obj->npc->pos->y); //Se pone aqui para que se haga solamente si se cumple las condiciones de la funcion anterior
-
     map->obj->npc->pos->x += x;
     map->obj->npc->pos->y += y;
     if (map->obj->npc->i == 1)

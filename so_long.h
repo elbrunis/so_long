@@ -35,6 +35,18 @@ typedef struct s_position
 	int			y;
 }				t_position;
 
+//
+typedef struct s_map_info //
+{
+	char		c; 
+	int			n_coins;
+	int			n_player;
+	int			n_exit;
+	t_position	*start_pos;
+	t_position	*finish_pos;
+}				t_map_info; //
+//
+
 typedef struct s_npc
 {
 	int			i; //es el contador para el movimiento del npc
@@ -71,7 +83,7 @@ typedef	struct s_map
 	int 		n; //n = tipo de imagen es decir lo que representa en el mapa: 1, 0, E.
 	t_objet 	*obj;
 	t_position	pos;
-	
+	t_map_info *map_info; //
 }				t_map;
 
 void	print_map(t_map *map);
@@ -83,6 +95,8 @@ t_map	*init_game_mem(void *mlx);
 t_map	*create_map_with_info(t_map *map);
 //move key
 int move_img(int keycode, void *param);
+// get info
+int	get_obj_info(int x, int y, t_map *map);
 
 
 

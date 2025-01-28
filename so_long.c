@@ -10,7 +10,7 @@ int	open_fd(void)
 	return (fd);
 }
 
-int	main(int ac, char **av)
+int	main()
 {
 	int		fd;
 	void	*mlx;
@@ -26,5 +26,6 @@ int	main(int ac, char **av)
 	print_map(map);
 	mlx_hook(map->window, 2, 1L << 0, move_img, map);
 	mlx_loop(map->mlx);
+	free_game(map);
 	return (0);
 }
