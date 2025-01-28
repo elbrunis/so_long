@@ -1,9 +1,33 @@
 # include "so_long.h"
 
 // X->fila   Y->columna
-static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
+    // ft_printf("%d\n",map->map_info->start_pos->x);
+    // ft_printf("%d\n",map->map_info->start_pos->y);
+static int obj_info(t_map *map, int *x, int *y, int x_move, int y_move) // HAY QUE REPARAR ESTA FUNCION
 {
-	mlx_put_image_to_window(map->mlx, map->window, map->obj->floor, map->obj->npc->pos->x, map->obj->npc->pos->y); //Se pone aqui para que se haga solamente si se cumple las condiciones de la funcion anterior
+    map->map_info->c = map->map[*x + y_move][*y + x_move];
+    ft_printf("la x al principio: %d\n", *x);
+    ft_printf("la y al principio: %d\n", *y);
+    if (map->map_info->c == WALL)
+		return(1);
+	if (map->map_info->c == EXIT)
+        exit(0);
+    *x += y_move;
+    *y += x_move;
+    ft_printf("la x al final: %d\n", *x);
+    ft_printf("la y al final: %d\n", *y);
+    return (0);
+}
+
+static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
+{   
+    int i;
+    i = 0;
+	if(1 == (i = obj_info(map, &map->map_info->start_pos->x, &map->map_info->start_pos->y, x, y)))
+        return;
+    mlx_put_image_to_window(map->mlx, map->window, map->obj->floor, map->obj->npc->pos->x, map->obj->npc->pos->y);
+    x *= 50;
+    y *= 50;
     map->obj->npc->pos->x += x;
     map->obj->npc->pos->y += y;
     if (map->obj->npc->i == 1)
@@ -23,13 +47,13 @@ static void	move_key(int key, t_map *map)
 	if (key == ESC)
 		mlx_destroy_window(map->mlx, map->window);
     if (key == W || key == UP)
-        move_npc(map, 0, -50, map->obj->npc->back, map->obj->npc->backmv);
+        move_npc(map, 0, -1, map->obj->npc->back, map->obj->npc->backmv);
     if (key == S || key == DOWN)
-        move_npc(map, 0, 50, map->obj->npc->front, map->obj->npc->frontmv);
+        move_npc(map, 0, 1, map->obj->npc->front, map->obj->npc->frontmv);
     if (key == D || key == RIGHT)
-        move_npc(map, 50, 0, map->obj->npc->right, map->obj->npc->rightmv);
+        move_npc(map, 1, 0, map->obj->npc->right, map->obj->npc->rightmv);
     if (key == A  || key == LEFT)
-        move_npc(map, -50, 0, map->obj->npc->left, map->obj->npc->leftmv);
+        move_npc(map, -1, 0, map->obj->npc->left, map->obj->npc->leftmv);
 }
 
 

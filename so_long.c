@@ -4,7 +4,7 @@ int	open_fd(void)
 {
 	int	fd;
 
-	fd = open("map/map1.ber", O_RDONLY);
+	fd = open("map/map4.ber", O_RDONLY);
 	if (fd <= 0)
 		ft_error("fd");
 	return (fd);
