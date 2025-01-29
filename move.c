@@ -6,22 +6,20 @@
 static int obj_info(t_map *map, int *x, int *y, int x_move, int y_move) // HAY QUE REPARAR ESTA FUNCION
 {
     map->map_info->c = map->map[*x + y_move][*y + x_move];
-    ft_printf("la x al principio: %d\n", *x);
-    ft_printf("la y al principio: %d\n", *y);
     if (map->map_info->c == WALL)
 		return(1);
 	if (map->map_info->c == EXIT)
         exit(0);
     *x += y_move;
     *y += x_move;
-    ft_printf("la x al final: %d\n", *x);
-    ft_printf("la y al final: %d\n", *y);
+    ft_printf("Number of movements: %d\n", map->map_info->n_moves++);
     return (0);
 }
 
 static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
 {   
     int i;
+
     i = 0;
 	if(1 == (i = obj_info(map, &map->map_info->start_pos->x, &map->map_info->start_pos->y, x, y)))
         return;

@@ -35,17 +35,16 @@ typedef struct s_position
 	int			y;
 }				t_position;
 
-//
-typedef struct s_map_info //
+typedef struct s_map_info
 {
-	char		c; 
+	char		c;
+	unsigned int n_moves; //
 	int			n_coins;
 	int			n_player;
 	int			n_exit;
 	t_position	*start_pos;
 	t_position	*finish_pos;
-}				t_map_info; //
-//
+}				t_map_info;
 
 typedef struct s_npc
 {
