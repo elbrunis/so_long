@@ -32,6 +32,7 @@ int	main(int argc, char *argv[])
 	map = create_map_with_info(map);
 	
 	map->window = mlx_new_window(map->mlx, (map->columnas * 50), (map->filas * 50), "so_long");
+	es_jugable(map, map->map_info); // verifica si hay camino valido
 	print_map(map);
 	mlx_hook(map->window, 2, 1L << 0, move_img, map);
 	mlx_hook(map->window, 17, 0, press_x, NULL); // es para cerrar la ventana

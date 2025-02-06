@@ -38,6 +38,7 @@ typedef struct s_position
 typedef struct s_map_info
 {
 	char		c;
+	int			**check;
 	unsigned int n_moves; //
 	int			n_coins;
 	int			n_player;
@@ -99,6 +100,7 @@ int move_img(int keycode, void *param);
 int	get_obj_info(int x, int y, t_map *map);
 //check map
 int	check_map(char *str, int *columnas, int filas);
+void es_jugable(t_map *map, t_map_info *map_info);
 
 
 #endif

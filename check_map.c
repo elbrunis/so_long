@@ -1,39 +1,67 @@
 #include "so_long.h"
 
+static int    **check_map_mem(int filas, int columnas)
+{
+    int **check_map;
+    int i;
+    int j;
 
-// void ft_algoritmo(t_map_info *map_info, int x, int y, int *i, char *dir)
-// {
-//     if(x < 0 || y < 0 || x >= ALTO || y >= ANCHO)
-//         return;
-//     if(map_info->n_coins == 0)
-//         return;
-//     if (map_info->map[x][y] == WALL || map_info->check[x][y] != 0)
-//     {
-//         printf("pared x: %d,  y: %d %s\n", x, y,dir);
-//         return;
-//     }
-//     if(map_info->map[x][y] == FLOOR || map_info->check[x][y] == 0)
-//     {
-//         printf("SUELO X: %d, Y: %d %s\n", x, y, dir);
-//         map_info->check[x][y] = 1;
+    check_map = (int **)malloc(sizeof(int *) * filas);
+    i = 0;
+    while (i < filas)
+    {
+        check_map[i++] = (int *)malloc(sizeof(int) * columnas);
+        j = 0;
+        while(check_map[i - 1][j])
+            check_map[i - 1][j++] = 0;
+    }
+    return(check_map);
+}
 
-//         if(map_info->map[x][y] == COINS || map_info->map[x][y] == EXIT)
-//         {
-//             map_info->n_coins--;
-//             printf("encontro monedas o salida: %d\n", map_info->n_coins);
-//         }
+static void ft_algoritmo(t_map_info *map_info, char **map, int x, int y, int *si_o_no, char *dir)
+{
+    if(x < 0 || y < 0)
+        return;
+    if(map_info->n_coins == 0)
+        return;
+    if (map[x][y] == WALL || map_info->check[x][y] != 0)
+    {
+        ft_printf("pared x: %d,  y: %d %s\n", x, y,dir);
+        return;
+    }
+    if(map[x][y] == FLOOR || map_info->check[x][y] == 0)
+    {
+        ft_printf("SUELO X: %d, Y: %d %s\n", x, y, dir);
+        map_info->check[x][y] = 1;
 
-//         if(map_info->map[x][y] == EXIT)
-//         {
-//             *i = 1;
-//             printf("llego a la salida y escribio en i%d\n", *i);
-//         }
-//         check_map(map_info, x + 1,   y, i, "abajo"); //abajo
-//         check_map(map_info, x,       y + 1, i, "derecha"); //derecha
-//         check_map(map_info, x ,      y - 1, i, "izquierda"); //izquierda
-//         check_map(map_info, x - 1,   y, i, "arriba"); //arriba
-//     }
-// }
+        if(map[x][y] == COINS || map[x][y] == EXIT)
+        {
+            map_info->n_coins--;
+            ft_printf("encontro monedas o salida: %d\n", map_info->n_coins);
+        }
+
+        if(map[x][y] == EXIT)
+        {
+            *si_o_no = 1;
+            ft_printf("llego a la salida y escribio en i%d\n", *si_o_no);
+        }
+        ft_algoritmo(map_info, map, x + 1,   y, si_o_no, "abajo"); //abajo
+        ft_algoritmo(map_info, map, x,       y + 1, si_o_no, "derecha"); //derecha
+        ft_algoritmo(map_info, map, x ,      y - 1, si_o_no, "izquierda"); //izquierda
+        ft_algoritmo(map_info, map, x - 1,   y, si_o_no, "arriba"); //arriba
+    }
+}
+
+void es_jugable(t_map *map, t_map_info *map_info)
+{
+    int i;
+
+    i = 0;
+    map_info->check = check_map_mem(map->filas, map->columnas);
+    ft_algoritmo(map_info, map->map, map_info->start_pos->x, map_info->start_pos->y, &i, "inicio");
+    if(i == 0)
+        the_error("el mapa no tiene ningun camino valido");
+}
 
 int	check_map(char *str, int *columnas, int filas)
 {

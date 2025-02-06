@@ -12,7 +12,7 @@ static t_map_info *init_map_info()
     map_info->n_coins = 0;
     map_info->n_player = 0;
     map_info->n_exit = 0;
-
+	map_info->check = NULL;
     map_info->start_pos = (t_position *)malloc(sizeof(t_position));
     map_info->finish_pos = (t_position *)malloc(sizeof(t_position));
 
