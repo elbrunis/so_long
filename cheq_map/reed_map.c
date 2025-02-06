@@ -14,26 +14,26 @@ static int	check_map(char *str, int *columnas, int filas)
         while (str[i] != '\0') // se le pone -1 para que no cuente el salto de linea
         {
             if(str[i] != WALL)
-                return (1); // si la primera fila no es toda pared retorna 1
+                return (1); //aqui va un error
             i++;
         }
 		*columnas = i; // guarda la longitud de la primera fila
         return (0); 
     }
 	else if (*columnas != (temp = strlen(str)))
-		return (1);
+		return (1); //aqui va un error
     // verifica que los caracteres sean validos
     i = 0;    
     while (i < *columnas && str[i] != '\0') 
 	{
 		if (str[i] != WALL && str[i] != FLOOR && str[i] != COINS
 			&& str[i] != PLAYER && str[i] != EXIT)
-			return (1);
+			return (1); // aqui va un error
 		i++;
 	}
     // verifica que la primera y ultima columna sean todas paredes
     if(str[1] != WALL && str[*columnas - 1] != WALL)
-        return (1);
+        return (1); //aqui va un error
 
 	return (0);
 }
@@ -49,15 +49,16 @@ static void	count_map(int fd, int *columnas, int *filas)
             *newline_pos = '\0';
         if(check_map(line, columnas, *filas) == 1)
         {
-            printf("%s\n", line);
-            printf("%d\n", *filas);
             printf("Error\n");
             return;
         }
         (*filas)++;
 		free(line);
-	}
+	}  
+    printf("filas: %d\n", *filas);
+    printf("line: %s\n", line);
 }
+
 
 int main(void)
 {

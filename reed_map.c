@@ -4,11 +4,17 @@
 static void    count_map(int fd, int *columnas, int *filas)
 {
     char    *line;
+    char    *new_line_pos;
 
     while ((line = get_next_line(fd)) != NULL)
     {
+        new_line_pos = ft_strchr(line, '\n');
+        if (new_line_pos != NULL)
+            *new_line_pos = '\0';
+        else
+            ft_printf("Error: No hay salto de linea\n");
+        check_map(line, columnas, *filas); // aqui guarda la longitud de las columnas
         (*filas)++;
-        *columnas = ft_strlen(line);
         free(line);
     }
 }

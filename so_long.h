@@ -88,6 +88,7 @@ typedef	struct s_map
 void	print_map(t_map *map);
 //mensajes de error
 void    ft_error(char *str);
+int the_error(char *str); //nuevo error
 //memory
 void	free_game(t_map *map);
 t_map	*init_game_mem(void *mlx);
@@ -96,7 +97,8 @@ t_map	*create_map_with_info(t_map *map);
 int move_img(int keycode, void *param);
 // get info
 int	get_obj_info(int x, int y, t_map *map);
-
+//check map
+int	check_map(char *str, int *columnas, int filas);
 
 
 #endif

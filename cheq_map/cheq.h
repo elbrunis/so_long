@@ -13,8 +13,8 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 
-# define ALTO 10
-# define ANCHO 10
+# define ALTO 15
+# define ANCHO 15
 
 typedef struct s_position
 {
