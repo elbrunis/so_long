@@ -18,47 +18,38 @@ static int    **check_map_mem(int filas, int columnas)
     return(check_map);
 }
 
-static void ft_algoritmo(t_map_info *map_info, char **map, int x, int y, int *si_o_no, char *dir)
+ .static void ft_algoritmo(t_map_info *map_info, char **map, int x, int y, int *si_o_no, int n_coins)
 {
     if(x < 0 || y < 0)
         return;
     if(map_info->n_coins == 0)
         return;
     if (map[x][y] == WALL || map_info->check[x][y] != 0)
-    {
-        ft_printf("pared x: %d,  y: %d %s\n", x, y,dir);
         return;
-    }
+
     if(map[x][y] == FLOOR || map_info->check[x][y] == 0)
     {
-        ft_printf("SUELO X: %d, Y: %d %s\n", x, y, dir);
         map_info->check[x][y] = 1;
-
         if(map[x][y] == COINS || map[x][y] == EXIT)
-        {
-            map_info->n_coins--;
-            ft_printf("encontro monedas o salida: %d\n", map_info->n_coins);
-        }
-
+            n_coins--;
         if(map[x][y] == EXIT)
-        {
             *si_o_no = 1;
-            ft_printf("llego a la salida y escribio en i%d\n", *si_o_no);
-        }
-        ft_algoritmo(map_info, map, x + 1,   y, si_o_no, "abajo"); //abajo
-        ft_algoritmo(map_info, map, x,       y + 1, si_o_no, "derecha"); //derecha
-        ft_algoritmo(map_info, map, x ,      y - 1, si_o_no, "izquierda"); //izquierda
-        ft_algoritmo(map_info, map, x - 1,   y, si_o_no, "arriba"); //arriba
+        ft_algoritmo(map_info, map, x + 1,   y, si_o_no, n_coins); //abajo
+        ft_algoritmo(map_info, map, x,       y + 1, si_o_no, n_coins); //derecha
+        ft_algoritmo(map_info, map, x ,      y - 1, si_o_no, n_coins); //izquierda
+        ft_algoritmo(map_info, map, x - 1,   y, si_o_no, n_coins); //arriba
     }
 }
 
 void es_jugable(t_map *map, t_map_info *map_info)
 {
     int i;
+    int n_coins;
 
     i = 0;
+    n_coins = map_info->n_coins;
     map_info->check = check_map_mem(map->filas, map->columnas);
-    ft_algoritmo(map_info, map->map, map_info->start_pos->x, map_info->start_pos->y, &i, "inicio");
+    ft_algoritmo(map_info, map->map, map_info->start_pos->x, map_info->start_pos->y, &i, n_coins);
     if(i == 0)
         the_error("el mapa no tiene ningun camino valido");
 }

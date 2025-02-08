@@ -6,10 +6,18 @@
 static int obj_info(t_map *map, int *x, int *y, int x_move, int y_move) // HAY QUE REPARAR ESTA FUNCION
 {
     map->map_info->c = map->map[*x + y_move][*y + x_move];
+    if (map->map_info->c == COINS)
+    {
+        map->map[*x + y_move][*y + x_move] = FLOOR;
+        map->map_info->n_coins--;
+        ft_printf("coin: %d\n", map->map_info->n_coins);
+    }
     if (map->map_info->c == WALL)
 		return(1);
-	if (map->map_info->c == EXIT)
-        exit(0);
+	if (map->map_info->c == EXIT && map->map_info->n_coins == 0)
+       exit(0);
+    else if (map->map_info->c == EXIT && map->map_info->n_coins != 0)
+        return(1);
     *x += y_move;
     *y += x_move;
     ft_printf("Number of movements: %d\n", map->map_info->n_moves++);
