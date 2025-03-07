@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/07 14:46:23 by biniesta          #+#    #+#             */
+/*   Updated: 2025/03/07 14:46:44 by biniesta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	free_npc_images(void *mlx, t_npc *npc)
@@ -23,6 +35,7 @@ static void	free_npc_images(void *mlx, t_npc *npc)
 		free(npc);
 	}
 }
+
 static void	free_images(void *mlx, t_objet *obj)
 {
 	if (obj)

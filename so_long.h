@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:42:36 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 13:44:55 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:57:05 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct s_map
 
 void			print_map(t_map *map);
 // mensajes de error
-void			ft_error(char *str);
 int				the_error(char *str); // nuevo error
 // memory
 void			free_game(t_map *map);
