@@ -101,6 +101,8 @@ int	get_obj_info(int x, int y, t_map *map);
 //check map
 int	check_map(char *str, int *columnas, int filas);
 void es_jugable(t_map *map, t_map_info *map_info);
+char	*ft_strcpy_free(char *str);
+int		check_last_line(char *str);
 
 
 #endif

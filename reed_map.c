@@ -4,6 +4,7 @@
 static void    count_map(int fd, int *columnas, int *filas)
 {
     char    *line;
+    char    *temp;
     char    *new_line_pos;
 
     while ((line = get_next_line(fd)) != NULL)
@@ -15,8 +16,10 @@ static void    count_map(int fd, int *columnas, int *filas)
             ft_printf("Error: No hay salto de linea\n");
         check_map(line, columnas, *filas); // aqui guarda la longitud de las columnas
         (*filas)++;
-        free(line);
+        temp = ft_strcpy_free(line);
     }
+    check_last_line(temp);
+    free(temp);
 }
 // creamos matriz para guardar el mapa
 static void	crate_memory_for_matriz(t_map *map)

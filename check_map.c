@@ -18,7 +18,7 @@ static int    **check_map_mem(int filas, int columnas)
     return(check_map);
 }
 
- .static void ft_algoritmo(t_map_info *map_info, char **map, int x, int y, int *si_o_no, int n_coins)
+static void ft_algoritmo(t_map_info *map_info, char **map, int x, int y, int *si_o_no, int n_coins)
 {
     if(x < 0 || y < 0)
         return;
@@ -87,5 +87,18 @@ int	check_map(char *str, int *columnas, int filas)
     // verifica que la primera y ultima columna sean todas paredes
     if(str[1] != WALL && str[*columnas - 1] != WALL)
         the_error("el mapa no esta rodeado por muros"); //aqui va un error
+    
+    return (0);
+}
+int check_last_line(char *str)
+{
+    int i;
+
+    while (str[i])
+    {
+        if (str[i] != WALL)
+            the_error("error en la ultima columna, hay un caracter no valido");
+        i++;
+    }
     return (0);
 }
