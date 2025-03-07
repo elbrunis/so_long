@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:39:08 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:54:37 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/07 18:17:58 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,6 @@ static t_map_info	*init_map_info(void)
 	map_info->finish_pos->x = 0;
 	map_info->finish_pos->y = 0;
 	return (map_info);
-}
-
-static t_map	*init_map(void *mlx)
-{
-	t_map	*map;
-
-	map = (t_map *)malloc(sizeof(t_map));
-	if (!map)
-		the_error("no se pudo asignar memoria para map");
-	map->fd = 0;
-	map->mlx = mlx;
-	map->window = NULL;
-	map->map = NULL;
-	map->filas = 0;
-	map->columnas = 0;
-	map->n = '\0';
-	map->obj = NULL;
-	map->pos.x = 0;
-	map->pos.y = 0;
-	map->map_info = init_map_info();
-	return (map);
 }
 
 static void	npc_continue(t_npc *npc, void *mlx, t_objet *obj)
@@ -129,7 +108,20 @@ t_map	*init_game_mem(void *mlx)
 {
 	t_map	*map;
 
-	map = init_map(mlx);
+	map = (t_map *)malloc(sizeof(t_map));
+	if (!map)
+		the_error("no se pudo asignar memoria para map");
+	map->fd = 0;
+	map->mlx = mlx;
+	map->window = NULL;
+	map->map = NULL;
+	map->filas = 0;
+	map->columnas = 0;
+	map->n = '\0';
+	map->obj = NULL;
+	map->pos.x = 0;
+	map->pos.y = 0;
+	map->map_info = init_map_info();
 	map->obj = init_obj(mlx);
 	return (map);
 }
