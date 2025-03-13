@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:58:34 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 17:55:13 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:41:13 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,13 @@ int	check_map(char *str, int *columnas, int filas)
 	temp = 0;
 	i = 0;
 	if (filas == 0)
+		*columnas = check_first_line(str);
+	else
 	{
-		while (str[i] != '\0')
-		{
-			if (str[i] != WALL)
-				the_error("la primera fila tiene un caracter que no es muro");
-			i++;
-		}
-		*columnas = i;
-		return (0);
+		temp = strlen(str);
+		if (*columnas != temp)
+			the_error("las filas no miden lo mismo");
 	}
-	else if (*columnas != (temp = strlen(str)))
-		the_error("las filas no miden lo mismo");
 	i = 0;
 	while (i < *columnas && str[i] != '\0')
 	{
@@ -97,18 +92,5 @@ int	check_map(char *str, int *columnas, int filas)
 	}
 	if (str[1] != WALL && str[*columnas - 1] != WALL)
 		the_error("el mapa no esta rodeado por muros");
-	return (0);
-}
-
-int	check_last_line(char *str)
-{
-	int	i;
-
-	while (str[i])
-	{
-		if (str[i] != WALL)
-			the_error("error en la ultima columna, hay un caracter no valido");
-		i++;
-	}
 	return (0);
 }

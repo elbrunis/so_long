@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:42:36 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:57:05 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/07 18:35:32 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int				get_obj_info(int x, int y, t_map *map);
 int				check_map(char *str, int *columnas, int filas);
 void			es_jugable(t_map *map, t_map_info *map_info);
 char			*ft_strcpy_free(char *str);
+int				check_first_line(char *str);
 int				check_last_line(char *str);
 
 #endif

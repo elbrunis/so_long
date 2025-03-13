@@ -3,7 +3,7 @@ NAME = hola
 CC = gcc
 CFLAGS =  -Werror -Wextra -Wall 
 SRC = init.c free.c so_long.c reed_map.c put_map.c move.c get_info.c \
-	ft_error.c check_map.c utils.c
+	ft_error.c check_map.c utils.c check_map2.c
 OBJ = $(SRC:.c=.o)
 
 # Rutas a las bibliotecas

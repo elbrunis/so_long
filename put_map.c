@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:53:45 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 13:56:40 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:41:26 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ void	print_map(t_map *map)
 			map->pos.y = x * 50;
 			map->pos.x = y * 50;
 			map->n = map->map[x][y];
-			ft_printf("%c ", map->n);
 			put_images(map);
 			y++;
 		}
-		ft_printf("\n");
 		x++;
 	}
 }
