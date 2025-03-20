@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:48:03 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:55:16 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:28:52 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static int	open_fd(char *argumento)
 
 static int	press_x(void)
 {
-	ft_printf("bien hecho cabronzete\n");
 	exit(0);
 	return (0);
 }

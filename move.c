@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:59:24 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 18:02:03 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:32:11 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // X->fila   Y->columna
 // ft_printf("%d\n",map->map_info->start_pos->x);
 // ft_printf("%d\n",map->map_info->start_pos->y);
-static int	obj_info(t_map *map, int *x, int *y, int x_move, int y_move) // HAY QUE REPARAR ESTA FUNCION
+static int	obj_info(t_map *map, int *x, int *y, int x_move, int y_move)
 {
 	map->map_info->c = map->map[*x + y_move][*y + x_move];
 	if (map->map_info->c == COINS)
@@ -40,8 +40,9 @@ static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
 	int	i;
 
 	i = 0;
-	if (1 == (i = obj_info(map, &map->map_info->start_pos->x,
-				&map->map_info->start_pos->y, x, y)))
+	i = obj_info(map, &map->map_info->start_pos->x,
+			&map->map_info->start_pos->y, x, y);
+	if (1 == i)
 		return ;
 	mlx_put_image_to_window(map->mlx, map->window, map->obj->floor,
 		map->obj->npc->pos->x, map->obj->npc->pos->y);
@@ -85,10 +86,3 @@ int	move_img(int keycode, void *param)
 	move_key(keycode, map);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	mlx_hook(map->window, 2, 1L << 0, move_img, move);
-// 	mlx_loop(map->mlx);
-// 	return (0);
-// }
