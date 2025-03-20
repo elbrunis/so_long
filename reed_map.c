@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:02:37 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:56:31 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:59:20 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static void	count_map(int fd, int *columnas, int *filas)
 		new_line_pos = ft_strchr(line, '\n');
 		if (new_line_pos != NULL)
 			*new_line_pos = '\0';
-		else
-			ft_printf("Error: No hay salto de linea\n");
 		check_map(line, columnas, *filas);
 		(*filas)++;
 		temp = ft_strcpy_free(line);

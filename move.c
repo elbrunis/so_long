@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:59:24 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 17:59:25 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:02:03 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int	obj_info(t_map *map, int *x, int *y, int x_move, int y_move) // HAY Q
 	{
 		map->map[*x + y_move][*y + x_move] = FLOOR;
 		map->map_info->n_coins--;
-		ft_printf("coin: %d\n", map->map_info->n_coins);
 	}
 	if (map->map_info->c == WALL)
 		return (1);

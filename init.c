@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:39:08 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 18:17:58 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:39:14 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_map_info	*init_map_info(void)
 	map_info->n_coins = 0;
 	map_info->n_player = 0;
 	map_info->n_exit = 0;
+	map_info->exit = 0;
 	map_info->check = NULL;
 	map_info->start_pos = (t_position *)malloc(sizeof(t_position));
 	map_info->finish_pos = (t_position *)malloc(sizeof(t_position));

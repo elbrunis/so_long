@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:42:36 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 18:35:32 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:38:45 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_position
 
 typedef struct s_map_info
 {
+	int				exit;
 	char			c;
 	int				**check;
 	unsigned int	n_moves;
