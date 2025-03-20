@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:59:24 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 18:32:11 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:40:36 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 // X->fila   Y->columna
 // ft_printf("%d\n",map->map_info->start_pos->x);
 // ft_printf("%d\n",map->map_info->start_pos->y);
-static int	obj_info(t_map *map, int *x, int *y, int x_move, int y_move)
+static int	obj_info(t_map *map, int x_move, int y_move)
 {
-	map->map_info->c = map->map[*x + y_move][*y + x_move];
+	map->map_info->c = map->map[map->map_info->start_pos->x
+		+ y_move][map->map_info->start_pos->y + x_move];
 	if (map->map_info->c == COINS)
 	{
-		map->map[*x + y_move][*y + x_move] = FLOOR;
+		map->map[map->map_info->start_pos->x
+			+ y_move][map->map_info->start_pos->y + x_move] = FLOOR;
 		map->map_info->n_coins--;
 	}
 	if (map->map_info->c == WALL)
@@ -29,8 +31,8 @@ static int	obj_info(t_map *map, int *x, int *y, int x_move, int y_move)
 		exit(0);
 	else if (map->map_info->c == EXIT && map->map_info->n_coins != 0)
 		return (1);
-	*x += y_move;
-	*y += x_move;
+	map->map_info->start_pos->x += y_move;
+	map->map_info->start_pos->y += x_move;
 	ft_printf("Number of movements: %d\n", map->map_info->n_moves++);
 	return (0);
 }
@@ -40,8 +42,7 @@ static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
 	int	i;
 
 	i = 0;
-	i = obj_info(map, &map->map_info->start_pos->x,
-			&map->map_info->start_pos->y, x, y);
+	i = obj_info(map, x, y);
 	if (1 == i)
 		return ;
 	mlx_put_image_to_window(map->mlx, map->window, map->obj->floor,
