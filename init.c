@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:39:08 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/21 10:34:09 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:51:33 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static t_map_info	*init_map_info(void)
 
 static void	npc_continue(t_npc *npc, void *mlx, t_objet *obj)
 {
-	npc->front[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm", &obj->width,
-			&obj->height);
+	npc->front[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm",
+			&obj->width, &obj->height);
 	npc->front[1] = mlx_xpm_file_to_image(mlx, "textures/npc/npcmv.xpm",
 			&obj->width, &obj->height);
 	npc->left[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npcleft.xpm",
