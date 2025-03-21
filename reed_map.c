@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:02:37 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 17:59:20 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:19:08 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static void	write_matriz(t_map *map, int x, int y)
 t_map	*create_map_with_info(t_map *map)
 {
 	count_map(map->fd, &map->columnas, &map->filas);
+	if (map->columnas < map->filas)
+		the_error("el mapa no es rectangular");
 	crate_memory_for_matriz(map);
 	write_matriz(map, 0, 0);
 	return (map);
