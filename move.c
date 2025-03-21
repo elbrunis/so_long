@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:59:24 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 18:40:36 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:40:21 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ static int	obj_info(t_map *map, int x_move, int y_move)
 	return (0);
 }
 
-static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
+static void	move_npc(t_map *map, int x, int y, void **img1)
 {
 	int	i;
 
-	i = 0;
 	i = obj_info(map, x, y);
 	if (1 == i)
 		return ;
@@ -53,13 +52,13 @@ static void	move_npc(t_map *map, int x, int y, void *img1, void *img2)
 	map->obj->npc->pos->y += y;
 	if (map->obj->npc->i == 1)
 	{
-		mlx_put_image_to_window(map->mlx, map->window, img2,
+		mlx_put_image_to_window(map->mlx, map->window, img1[0],
 			map->obj->npc->pos->x, map->obj->npc->pos->y);
 		map->obj->npc->i = 0;
 	}
 	else
 	{
-		mlx_put_image_to_window(map->mlx, map->window, img1,
+		mlx_put_image_to_window(map->mlx, map->window, img1[1],
 			map->obj->npc->pos->x, map->obj->npc->pos->y);
 		map->obj->npc->i = 1;
 	}
@@ -70,13 +69,13 @@ static void	move_key(int key, t_map *map)
 	if (key == ESC)
 		mlx_destroy_window(map->mlx, map->window);
 	if (key == W || key == UP)
-		move_npc(map, 0, -1, map->obj->npc->back, map->obj->npc->backmv);
+		move_npc(map, 0, -1, map->obj->npc->back);
 	if (key == S || key == DOWN)
-		move_npc(map, 0, 1, map->obj->npc->front, map->obj->npc->frontmv);
+		move_npc(map, 0, 1, map->obj->npc->front);
 	if (key == D || key == RIGHT)
-		move_npc(map, 1, 0, map->obj->npc->right, map->obj->npc->rightmv);
+		move_npc(map, 1, 0, map->obj->npc->right);
 	if (key == A || key == LEFT)
-		move_npc(map, -1, 0, map->obj->npc->left, map->obj->npc->leftmv);
+		move_npc(map, -1, 0, map->obj->npc->left);
 }
 
 int	move_img(int keycode, void *param)

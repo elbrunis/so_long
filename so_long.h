@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:42:36 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 17:38:45 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:29:16 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,10 @@ typedef struct s_npc
 {
 	int			i; // es el contador para el movimiento del npc
 	t_position	*pos;
-	void		*front;
-	void		*frontmv;
-	void		*left;
-	void		*leftmv;
-	void		*right;
-	void		*rightmv;
-	void		*back;
-	void		*backmv;
+	void		*front[2];
+	void		*left[2];
+	void		*right[2];
+	void		*back[2];
 }				t_npc;
 
 typedef struct s_objet

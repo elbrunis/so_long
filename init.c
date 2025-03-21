@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:39:08 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/20 17:39:14 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:34:09 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ static t_map_info	*init_map_info(void)
 
 static void	npc_continue(t_npc *npc, void *mlx, t_objet *obj)
 {
-	npc->front = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm", &obj->width,
+	npc->front[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npc.xpm", &obj->width,
 			&obj->height);
-	npc->frontmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcmv.xpm",
+	npc->front[1] = mlx_xpm_file_to_image(mlx, "textures/npc/npcmv.xpm",
 			&obj->width, &obj->height);
-	npc->left = mlx_xpm_file_to_image(mlx, "textures/npc/npcleft.xpm",
+	npc->left[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npcleft.xpm",
 			&obj->width, &obj->height);
-	npc->leftmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcleftmv.xpm",
+	npc->left[1] = mlx_xpm_file_to_image(mlx, "textures/npc/npcleftmv.xpm",
 			&obj->width, &obj->height);
-	npc->right = mlx_xpm_file_to_image(mlx, "textures/npc/npcright.xpm",
+	npc->right[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npcright.xpm",
 			&obj->width, &obj->height);
-	npc->rightmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcrightmv.xpm",
+	npc->right[1] = mlx_xpm_file_to_image(mlx, "textures/npc/npcrightmv.xpm",
 			&obj->width, &obj->height);
-	npc->back = mlx_xpm_file_to_image(mlx, "textures/npc/npcback.xpm",
+	npc->back[0] = mlx_xpm_file_to_image(mlx, "textures/npc/npcback.xpm",
 			&obj->width, &obj->height);
-	npc->backmv = mlx_xpm_file_to_image(mlx, "textures/npc/npcbackmv.xpm",
+	npc->back[1] = mlx_xpm_file_to_image(mlx, "textures/npc/npcbackmv.xpm",
 			&obj->width, &obj->height);
 }
 
@@ -76,8 +76,7 @@ static t_npc	*init_npc(void *mlx, t_objet *obj)
 	npc->pos->y = 0;
 	npc->i = 0;
 	npc_continue(npc, mlx, obj);
-	if (!npc->front || !npc->frontmv || !npc->left || !npc->leftmv
-		|| !npc->right || !npc->rightmv || !npc->back || !npc->backmv)
+	if (!npc->front || !npc->left || !npc->right || !npc->back)
 		the_error("no se han asignado correctamente las imágenes de los NPC");
 	return (npc);
 }

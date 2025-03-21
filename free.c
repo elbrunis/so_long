@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:46:23 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:46:44 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:37:08 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static void	free_npc_images(void *mlx, t_npc *npc)
 {
 	if (npc)
 	{
-		if (npc->front)
-			mlx_destroy_image(mlx, npc->front);
-		if (npc->frontmv)
-			mlx_destroy_image(mlx, npc->frontmv);
-		if (npc->left)
-			mlx_destroy_image(mlx, npc->left);
-		if (npc->leftmv)
-			mlx_destroy_image(mlx, npc->leftmv);
-		if (npc->right)
-			mlx_destroy_image(mlx, npc->right);
-		if (npc->rightmv)
-			mlx_destroy_image(mlx, npc->rightmv);
-		if (npc->back)
-			mlx_destroy_image(mlx, npc->back);
-		if (npc->backmv)
-			mlx_destroy_image(mlx, npc->backmv);
+		if (npc->front[0])
+			mlx_destroy_image(mlx, npc->front[0]);
+		if (npc->front[1])
+			mlx_destroy_image(mlx, npc->front[1]);
+		if (npc->left[0])
+			mlx_destroy_image(mlx, npc->left[0]);
+		if (npc->left[1])
+			mlx_destroy_image(mlx, npc->left[1]);
+		if (npc->right[0])
+			mlx_destroy_image(mlx, npc->right[0]);
+		if (npc->right[1])
+			mlx_destroy_image(mlx, npc->right[1]);
+		if (npc->back[0])
+			mlx_destroy_image(mlx, npc->back[0]);
+		if (npc->back[1])
+			mlx_destroy_image(mlx, npc->back[1]);
 		free(npc);
 	}
 }

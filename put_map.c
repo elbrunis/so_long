@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:53:45 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/08 15:41:26 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:30:05 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	put_images(t_map *map)
 		mlx_put_image_to_window(map->mlx, map->window, map->obj->coin,
 			map->pos.x, map->pos.y);
 	if (PLAYER == map->n)
-		mlx_put_image_to_window(map->mlx, map->window, map->obj->npc->front,
+		mlx_put_image_to_window(map->mlx, map->window, map->obj->npc->front[0],
 			map->pos.x, map->pos.y);
 	if (EXIT == map->n)
 		mlx_put_image_to_window(map->mlx, map->window, map->obj->exit,
