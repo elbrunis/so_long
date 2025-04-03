@@ -1,4 +1,4 @@
-NAME = hola
+NAME = so_long
 
 CC = gcc
 CFLAGS =  -Werror -Wextra -Wall 
