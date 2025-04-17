@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:52:24 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/07 14:00:14 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/04/06 16:24:30 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strcpy_free(char *str)
 	int		len;
 	int		i;
 
+	if (str == NULL)
+		return (NULL);
 	len = ft_strlen(str);
-	new = (char *)malloc(sizeof(char) * len);
+	new = (char *)malloc(sizeof(char) * (len + 1));
 	if (new == NULL)
 		the_error("esta en utils el error");
 	i = 0;

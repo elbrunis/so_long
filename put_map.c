@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:53:45 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/21 10:30:05 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:13:12 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_map(t_map *map)
 	int	x;
 	int	y;
 
-	if (!map || !map->map)
+	if (!map || !map->map || !map->obj || !map->mlx || !map->window)
 		return ;
 	x = 0;
 	while (map->map[x] != NULL && x < map->filas)

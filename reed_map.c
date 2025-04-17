@@ -6,7 +6,7 @@
 /*   By: biniesta <biniesta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:02:37 by biniesta          #+#    #+#             */
-/*   Updated: 2025/03/21 14:19:08 by biniesta         ###   ########.fr       */
+/*   Updated: 2025/04/17 09:20:48 by biniesta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	crate_memory_for_matriz(t_map *map)
 {
 	int	i;
 
-	map->map = (char **)malloc(sizeof(char *) * map->filas);
+	map->map = (char **)malloc(sizeof(char *) * (map->filas + 1));
 	if (map->map == NULL)
 		the_error("no se pudo asignar memoria para las filas");
 	i = 0;
