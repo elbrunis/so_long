@@ -28,7 +28,10 @@ static int	obj_info(t_map *map, int x_move, int y_move)
 	if (map->map_info->c == WALL)
 		return (1);
 	if (map->map_info->c == EXIT && map->map_info->n_coins == 0)
+	{
+		free_game(map);
 		exit(0);
+	}
 	else if (map->map_info->c == EXIT && map->map_info->n_coins != 0)
 		return (1);
 	map->map_info->start_pos->x += y_move;

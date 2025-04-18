@@ -48,7 +48,6 @@ int	main(int argc, char *argv[])
 	print_map(map);
 	mlx_hook(map->window, 2, 1L << 0, move_img, map);
 	mlx_hook(map->window, 17, 0, press_x, NULL);
-	mlx_loop(map->mlx);
-	free_game(map);
+	mlx_loop(map->mlx);	
 	return (0);
 }
