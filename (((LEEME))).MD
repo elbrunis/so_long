@@ -4,3 +4,4 @@ TAREAS:
  - corregir todo el manejo de memoria
  - cojer una hoja de correccion y auto corregirme
  - hablar con compañero para ver lo de la ventana ajustable
+ - corregir el $(wildcard $(SRC_DIR)/is/*.c) \

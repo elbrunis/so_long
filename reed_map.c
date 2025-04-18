@@ -19,6 +19,7 @@ static void	count_map(int fd, int *columnas, int *filas)
 	char	*new_line_pos;
 
 	line = get_next_line(fd);
+	temp = NULL;
 	while (line != NULL)
 	{
 		new_line_pos = ft_strchr(line, '\n');
@@ -26,6 +27,7 @@ static void	count_map(int fd, int *columnas, int *filas)
 			*new_line_pos = '\0';
 		check_map(line, columnas, *filas);
 		(*filas)++;
+		free(temp);
 		temp = ft_strcpy_free(line);
 		line = get_next_line(fd);
 	}

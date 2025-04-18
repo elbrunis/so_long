@@ -39,10 +39,10 @@ void	print_map(t_map *map)
 	if (!map || !map->map || !map->obj || !map->mlx || !map->window)
 		return ;
 	x = 0;
-	while (map->map[x] != NULL && x < map->filas)
+	while (x < map->filas && map->map[x] != NULL)
 	{
 		y = 0;
-		while (map->map[x][y] != '\0' && y < map->columnas)
+		while (y < map->columnas && map->map[x][y] != '\0' )
 		{
 			map->pos.y = x * 50;
 			map->pos.x = y * 50;

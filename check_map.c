@@ -29,6 +29,18 @@ static int	**check_map_mem(int filas, int columnas)
 	}
 	return (check_map);
 }
+static int **free_check_mem(int **array, int filas)
+{
+	int i;
+
+	i = 0;
+	if (!array)
+		return (NULL);
+	while (i < filas)
+		free(array[i++]);
+	free(array);
+	return (NULL);
+}
 
 static void	ft_algoritmo(t_map_info *map_info, char **map, int x, int y)
 {
@@ -61,6 +73,7 @@ void	es_jugable(t_map *map, t_map_info *map_info)
 	map_info->check = check_map_mem(map->filas, map->columnas);
 	ft_algoritmo(map_info, map->map, map_info->start_pos->x,
 		map_info->start_pos->y);
+	map_info->check = free_check_mem(map_info->check,map->filas); //
 	if (map_info->exit == 0 || map_info->n_coins != 0)
 		the_error("no hay camino valido, revisa las salida y las monedas");
 	map_info->n_coins = n_coins;

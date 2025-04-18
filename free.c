@@ -32,11 +32,13 @@ static void	free_npc_images(void *mlx, t_npc *npc)
 			mlx_destroy_image(mlx, npc->back[0]);
 		if (npc->back[1])
 			mlx_destroy_image(mlx, npc->back[1]);
+		if (npc->pos)
+			free(npc->pos);
 		free(npc);
 	}
 }
 
-static void	free_images(void *mlx, t_objet *obj)
+static void	free_obj(void *mlx, t_objet *obj)
 {
 	if (obj)
 	{
@@ -55,13 +57,20 @@ static void	free_images(void *mlx, t_objet *obj)
 
 static void	free_map_struct(t_map *map)
 {
-	int	x;
+	int	i;
 
-	x = 0;
+	
 	if (!map || !map->map)
 		return ;
-	while (x < map->filas)
-		free(map->map[x++]);
+	if (map->map_info)
+	{
+		free(map->map_info->start_pos);
+		free(map->map_info->start_pos);
+		free(map->map_info);
+	}
+	i = 0;
+	while (i < map->filas)
+		free(map->map[i++]);
 	free(map->map);
 	mlx_destroy_window(map->mlx, map->window);
 	mlx_destroy_display(map->mlx);
@@ -70,6 +79,6 @@ static void	free_map_struct(t_map *map)
 
 void	free_game(t_map *map)
 {
-	free_images(map->mlx, map->obj);
+	free_obj(map->mlx, map->obj);
 	free_map_struct(map);
 }
