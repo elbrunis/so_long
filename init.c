@@ -62,7 +62,7 @@ static t_npc	*init_npc(void *mlx, t_objet *obj)
 	t_npc		*npc;
 	t_position	*pos;
 
-	npc = (t_npc *)malloc(sizeof(t_npc));//
+	npc = (t_npc *)malloc(sizeof(t_npc));
 	if (!npc)
 		return (NULL);
 	pos = (t_position *)malloc(sizeof(t_position));

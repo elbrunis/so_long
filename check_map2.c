@@ -21,8 +21,8 @@ int	check_first_line(t_map *map, char *str)
 	{
 		if (str[i] != WALL)
 		{
-			free(str);//
-			the_error("the first line have an invalid char", map);//
+			free(str);
+			the_error("the first line have an invalid char", map);
 		}
 		i++;
 	}
@@ -38,14 +38,15 @@ int	check_last_line(t_map *map, char *str)
 	{
 		if (str[i] != WALL)
 		{
-			free(str);//
-			the_error("the last line have an invalid char", map);//
+			free(str);
+			the_error("the last line have an invalid char", map);
 		}
 		i++;
 	}
 	return (0);
 }
-void check_invalid_char(t_map *map, char *str, int *columnas)
+
+void	check_invalid_char(t_map *map, char *str, int *columnas)
 {
 	int	i;
 
@@ -55,17 +56,14 @@ void check_invalid_char(t_map *map, char *str, int *columnas)
 		if (str[i] != WALL && str[i] != FLOOR && str[i] != COINS
 			&& str[i] != PLAYER && str[i] != EXIT)
 		{
-			free(str);//
-			the_error("there is an invalid char", map);//
+			free(str);
+			the_error("there is an invalid char", map);
 		}
 		i++;
 	}
-	if (str[1] != WALL && str[*columnas - 1] != WALL) //posible error
+	if (str[1] != WALL && str[*columnas - 1] != WALL)
 	{
-		free(str);//
-		the_error("the map is not surrounded by walls.", map);//
+		free(str);
+		the_error("the map is not surrounded by walls.", map);
 	}
 }
-
-//faltan chequeos
- 

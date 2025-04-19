@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 static void	check_extension(char *argumento)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (argumento[len])
 		len++;
-	if(argumento[len - 1] != 'r' || argumento[len - 2] != 'e' || 
-			argumento[len - 3] != 'b')
+	if (argumento[len - 1] != 'r' || argumento[len - 2]
+		!= 'e' || argumento[len - 3] != 'b')
 		the_error("check map extension: map/<name_of_map>.ber", NULL);
 }
 
@@ -31,7 +32,6 @@ static int	open_fd(char *argumento)
 	fd = open(argumento, O_RDONLY);
 	if (fd <= 0)
 		the_error("check the file: map/<name_of_map>.ber", NULL);
-	
 	return (fd);
 }
 
@@ -64,6 +64,6 @@ int	main(int argc, char *argv[])
 	print_map(map);
 	mlx_hook(map->window, 2, 1L << 0, move_img, map);
 	mlx_hook(map->window, 17, 0, exit_game, map);
-	mlx_loop(map->mlx);	
+	mlx_loop(map->mlx);
 	return (0);
 }

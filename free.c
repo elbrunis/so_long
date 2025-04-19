@@ -59,7 +59,6 @@ static void	free_map_struct(t_map *map)
 {
 	int	i;
 
-	
 	if (!map)
 		return ;
 	if (map->map_info)
@@ -68,7 +67,7 @@ static void	free_map_struct(t_map *map)
 		free(map->map_info->finish_pos);
 		free(map->map_info);
 	}
-	if(map->map)
+	if (map->map)
 	{
 		i = 0;
 		while (i < map->filas)

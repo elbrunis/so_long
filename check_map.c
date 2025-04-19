@@ -34,9 +34,9 @@ static int	**check_map_mem(int filas, int columnas)
 	return (check_map);
 }
 
-static int **free_check_mem(int **array, int filas)
+static int	**free_check_mem(int **array, int filas)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!array)
@@ -82,9 +82,9 @@ void	es_jugable(t_map *map, t_map_info *map_info)
 		the_error("mem_check failed: check_map.c", map);
 	ft_algoritmo(map_info, map->map, map_info->start_pos->x,
 		map_info->start_pos->y);
-	map_info->check = free_check_mem(map_info->check,map->filas); //
+	map_info->check = free_check_mem(map_info->check, map->filas);
 	if (map_info->exit == 0 || map_info->n_coins != 0)
-		the_error("there is not valid path", map); //
+		the_error("there is not valid path", map);
 	if (1 < map_info->n_player || 1 < map_info->n_exit)
 		the_error("Duplicate item: You need <1 exit> <1 player>", map);
 	map_info->n_coins = n_coins;
@@ -102,10 +102,10 @@ int	check_map(t_map *map, char *str, int *columnas, int filas)
 		temp = ft_strlen(str);
 		if (*columnas != temp)
 		{
-			free(str);//
-			the_error("rows does not have the same length", map); //
+			free(str);
+			the_error("rows does not have the same length", map);
 		}
 	}
-	check_invalid_char(map, str, columnas);//
+	check_invalid_char(map, str, columnas);
 	return (0);
 }
