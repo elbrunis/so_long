@@ -70,7 +70,7 @@ static void	move_npc(t_map *map, int x, int y, void **img1)
 static void	move_key(int key, t_map *map)
 {
 	if (key == ESC)
-		mlx_destroy_window(map->mlx, map->window);
+		exit_game(map);
 	if (key == W || key == UP)
 		move_npc(map, 0, -1, map->obj->npc->back);
 	if (key == S || key == DOWN)

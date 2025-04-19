@@ -35,7 +35,7 @@ static int	open_fd(char *argumento)
 	return (fd);
 }
 
-static int	press_x(t_map *map)
+int	exit_game(t_map *map)
 {
 	free_game(map);
 	exit(0);
@@ -63,7 +63,7 @@ int	main(int argc, char *argv[])
 	es_jugable(map, map->map_info);
 	print_map(map);
 	mlx_hook(map->window, 2, 1L << 0, move_img, map);
-	mlx_hook(map->window, 17, 0, press_x, map);
+	mlx_hook(map->window, 17, 0, exit_game, map);
 	mlx_loop(map->mlx);	
 	return (0);
 }

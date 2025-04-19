@@ -74,6 +74,8 @@ void	es_jugable(t_map *map, t_map_info *map_info)
 	int	n_coins;
 
 	n_coins = map_info->n_coins;
+	if (n_coins <= 0)
+		the_error("there are no coins", map);
 	map_info->n_coins++;
 	map_info->check = check_map_mem(map->filas, map->columnas);
 	if (!map_info->check)
@@ -83,6 +85,8 @@ void	es_jugable(t_map *map, t_map_info *map_info)
 	map_info->check = free_check_mem(map_info->check,map->filas); //
 	if (map_info->exit == 0 || map_info->n_coins != 0)
 		the_error("there is not valid path", map); //
+	if (1 < map_info->n_player || 1 < map_info->n_exit)
+		the_error("Duplicate item: You need <1 exit> <1 player>", map);
 	map_info->n_coins = n_coins;
 }
 

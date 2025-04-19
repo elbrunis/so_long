@@ -96,8 +96,9 @@ typedef struct s_map
 }				t_map;
 
 void			print_map(t_map *map);
-// mensajes de error
+// mensajes de error y exit
 int				the_error(char *str, t_map *map);
+int				exit_game(t_map *map);
 // memory
 void			free_game(t_map *map);
 t_map			*init_game_mem(void *mlx);
