@@ -73,7 +73,9 @@ static t_npc	*init_npc(void *mlx, t_objet *obj)
 	npc->pos->y = 0;
 	npc->i = 0;
 	npc_continue(npc, mlx, obj);
-	if (!npc->front || !npc->left || !npc->right || !npc->back)
+	if (!npc->front[0] || !npc->left[0] || !npc->right[0] || !npc->back[0])
+		return (NULL);
+	if (!npc->front[1] || !npc->left[1] || !npc->right[1] || !npc->back[1])
 		return (NULL);
 	return (npc);
 }

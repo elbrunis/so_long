@@ -50,8 +50,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		the_error("check arguments: map/<name_of_map>.ber", NULL);
-	else
-		fd = open_fd(argv[1]);
+	fd = open_fd(argv[1]);
 	mlx = mlx_init();
 	map = init_game_mem(mlx);
 	if (!map)

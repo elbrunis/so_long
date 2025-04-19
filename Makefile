@@ -1,7 +1,7 @@
 NAME = so_long
 
-CC = gcc
-CFLAGS =  -Werror -Wextra -Wall -fPIC -fsanitize=address -g3
+CC = cc
+CFLAGS =  -Werror -Wextra -Wall -fPIC #-fsanitize=address -g3
 SRC = init.c free.c so_long.c reed_map.c put_map.c move.c get_info.c \
 	ft_error.c check_map.c utils.c check_map2.c
 OBJ = $(SRC:.c=.o)

@@ -51,8 +51,6 @@ static void	ft_algoritmo(t_map_info *map_info, char **map, int x, int y)
 {
 	if (x < 0 || y < 0)
 		return ;
-	if (map_info->n_coins == 0 && map_info->n_coins == 1)
-		return ;
 	if (map[x][y] == WALL || map_info->check[x][y] == 1)
 		return ;
 	if (map[x][y] == FLOOR || map_info->check[x][y] != 1)
