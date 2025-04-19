@@ -28,7 +28,10 @@ static int	obj_info(t_map *map, int x_move, int y_move)
 	if (map->map_info->c == WALL)
 		return (1);
 	if (map->map_info->c == EXIT && map->map_info->n_coins == 0)
+	{
+		free_game(map);
 		exit(0);
+	}
 	else if (map->map_info->c == EXIT && map->map_info->n_coins != 0)
 		return (1);
 	map->map_info->start_pos->x += y_move;
@@ -67,7 +70,7 @@ static void	move_npc(t_map *map, int x, int y, void **img1)
 static void	move_key(int key, t_map *map)
 {
 	if (key == ESC)
-		mlx_destroy_window(map->mlx, map->window);
+		exit_game(map);
 	if (key == W || key == UP)
 		move_npc(map, 0, -1, map->obj->npc->back);
 	if (key == S || key == DOWN)

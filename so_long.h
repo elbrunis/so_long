@@ -96,8 +96,9 @@ typedef struct s_map
 }				t_map;
 
 void			print_map(t_map *map);
-// mensajes de error
-int				the_error(char *str); // nuevo error
+// mensajes de error y exit
+int				the_error(char *str, t_map *map);
+int				exit_game(t_map *map);
 // memory
 void			free_game(t_map *map);
 t_map			*init_game_mem(void *mlx);
@@ -107,10 +108,11 @@ int				move_img(int keycode, void *param);
 // get info
 int				get_obj_info(int x, int y, t_map *map);
 // check map
-int				check_map(char *str, int *columnas, int filas);
+int				check_map(t_map *map, char *str, int *columnas, int filas);//
 void			es_jugable(t_map *map, t_map_info *map_info);
-char			*ft_strcpy_free(char *str);
-int				check_first_line(char *str);
-int				check_last_line(char *str);
+char			*ft_strcpy_free(t_map *map, char *str);
+void			check_invalid_char(t_map *map, char *str, int *columnas);
+int				check_first_line(t_map *map, char *str);
+int				check_last_line(t_map *map, char *str);
 
 #endif
