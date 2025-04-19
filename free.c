@@ -60,7 +60,7 @@ static void	free_map_struct(t_map *map)
 	int	i;
 
 	
-	if (!map || !map->map)
+	if (!map)
 		return ;
 	if (map->map_info)
 	{
@@ -68,11 +68,14 @@ static void	free_map_struct(t_map *map)
 		free(map->map_info->finish_pos);
 		free(map->map_info);
 	}
-	i = 0;
-	while (i < map->filas)
-		free(map->map[i++]);
-	free(map->map);
-	mlx_destroy_window(map->mlx, map->window);
+	if(map->map)
+	{
+		i = 0;
+		while (i < map->filas)
+			free(map->map[i++]);
+		free(map->map);
+		mlx_destroy_window(map->mlx, map->window);
+	}
 	mlx_destroy_display(map->mlx);
 	free(map->mlx);
 	free(map);

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-char	*ft_strcpy_free(char *str)
+char	*ft_strcpy_free(t_map *map, char *str)
 {
 	char	*new;
 	int		len;
@@ -23,7 +23,7 @@ char	*ft_strcpy_free(char *str)
 	len = ft_strlen(str);
 	new = (char *)malloc(sizeof(char) * (len + 1));
 	if (new == NULL)
-		the_error("esta en utils el error");
+		the_error("malloc invalid in: ft_srcpy_free", map);
 	i = 0;
 	while (str[i])
 	{

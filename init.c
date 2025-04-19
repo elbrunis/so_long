@@ -29,10 +29,7 @@ static t_map_info	*init_map_info(void)
 	map_info->start_pos = (t_position *)malloc(sizeof(t_position));
 	map_info->finish_pos = (t_position *)malloc(sizeof(t_position));
 	if (map_info->start_pos == NULL || map_info->finish_pos == NULL)
-	{
-		ft_printf("Error al asignar memoria para las posiciones");
-		exit(1);
-	}
+		return (NULL);
 	map_info->start_pos->x = 0;
 	map_info->start_pos->y = 0;
 	map_info->finish_pos->x = 0;
@@ -65,19 +62,19 @@ static t_npc	*init_npc(void *mlx, t_objet *obj)
 	t_npc		*npc;
 	t_position	*pos;
 
-	npc = (t_npc *)malloc(sizeof(t_npc));
+	npc = (t_npc *)malloc(sizeof(t_npc));//
 	if (!npc)
-		the_error("no se pudo asignar memoria para npc");
+		return (NULL);
 	pos = (t_position *)malloc(sizeof(t_position));
 	if (!pos)
-		the_error("no se pudo asignar memoria para npc");
+		return (NULL);
 	npc->pos = pos;
 	npc->pos->x = 0;
 	npc->pos->y = 0;
 	npc->i = 0;
 	npc_continue(npc, mlx, obj);
 	if (!npc->front || !npc->left || !npc->right || !npc->back)
-		the_error("no se han asignado correctamente las imágenes de los NPC");
+		return (NULL);
 	return (npc);
 }
 
@@ -87,7 +84,7 @@ static t_objet	*init_obj(void *mlx)
 
 	obj = (t_objet *)malloc(sizeof(t_objet));
 	if (!obj)
-		the_error("no se ha asignado correctamente la memoria para map info");
+		return (NULL);
 	obj->width = 0;
 	obj->height = 0;
 	obj->floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &obj->width,
@@ -99,8 +96,8 @@ static t_objet	*init_obj(void *mlx)
 	obj->exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &obj->width,
 			&obj->height);
 	obj->npc = init_npc(mlx, obj);
-	if (!obj->floor || !obj->wall || !obj->coin || !obj->exit)
-		the_error("no se han asignado correctamente las texturas");
+	if (!obj->npc || !obj->floor || !obj->wall || !obj->coin || !obj->exit)
+		return (NULL);
 	return (obj);
 }
 
@@ -110,7 +107,7 @@ t_map	*init_game_mem(void *mlx)
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		the_error("no se pudo asignar memoria para map");
+		return (NULL);
 	map->fd = 0;
 	map->mlx = mlx;
 	map->window = NULL;
@@ -122,7 +119,11 @@ t_map	*init_game_mem(void *mlx)
 	map->pos.x = 0;
 	map->pos.y = 0;
 	map->map_info = init_map_info();
+	if (!map->map_info)
+		return (NULL);
 	map->obj = init_obj(mlx);
+	if (!map->obj)
+		return (NULL);
 	return (map);
 }
 

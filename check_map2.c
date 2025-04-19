@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	check_first_line(char *str)
+int	check_first_line(t_map *map, char *str)
 {
 	int	i;
 
@@ -20,13 +20,16 @@ int	check_first_line(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] != WALL)
-			the_error("la primera fila tiene un caracter que no es muro");
+		{
+			free(str);//
+			the_error("the first line have an invalid char", map);//
+		}
 		i++;
 	}
 	return (i);
 }
 
-int	check_last_line(char *str)
+int	check_last_line(t_map *map, char *str)
 {
 	int	i;
 
@@ -34,9 +37,35 @@ int	check_last_line(char *str)
 	while (str[i])
 	{
 		if (str[i] != WALL)
-			the_error("error en la ultima columna, hay un caracter no valido");
+		{
+			free(str);//
+			the_error("the last line have an invalid char", map);//
+		}
 		i++;
 	}
 	return (0);
 }
+void check_invalid_char(t_map *map, char *str, int *columnas)
+{
+	int	i;
+
+	i = 0;
+	while (i < *columnas && str[i] != '\0')
+	{
+		if (str[i] != WALL && str[i] != FLOOR && str[i] != COINS
+			&& str[i] != PLAYER && str[i] != EXIT)
+		{
+			free(str);//
+			the_error("there is an invalid char", map);//
+		}
+		i++;
+	}
+	if (str[1] != WALL && str[*columnas - 1] != WALL) //posible error
+	{
+		free(str);//
+		the_error("the map is not surrounded by walls.", map);//
+	}
+}
+
+//faltan chequeos
  
