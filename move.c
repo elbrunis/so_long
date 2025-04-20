@@ -37,7 +37,7 @@ static int	obj_info(t_map *map, int x_move, int y_move)
 	return (0);
 }
 
-static void move_npc2(t_map *map, void **img1)
+static void	move_npc2(t_map *map, void **img1)
 {
 	if (map->obj->npc->i == 1)
 	{
