@@ -50,6 +50,7 @@ typedef struct s_position
 typedef struct s_map_info
 {
 	int				exit;
+	int				is_exit;
 	char			c;
 	int				**check;
 	unsigned int	n_moves;

@@ -21,6 +21,7 @@ static t_map_info	*init_map_info(void)
 		return (NULL);
 	map_info->c = 0;
 	map_info->n_moves = 1;
+	map_info->is_exit = 0;
 	map_info->n_coins = 0;
 	map_info->n_player = 0;
 	map_info->n_exit = 0;
